@@ -1,8 +1,13 @@
-import React from "react";
+import React from "react"
 import "./styles.css"
 
 export default function Navbar(){
-    const [isOpen, setIsOpen] = React.useState(false);
+    const [isOpen, setIsOpen] = React.useState(false)
+    const [resource, setResource] = React.useState(false)
+
+    function openResources(){
+        setResource(!resource)
+    }
 
     return(
         <div>
@@ -10,8 +15,8 @@ export default function Navbar(){
                 <img src="" alt="logo" className="w-15 h-15" />
                 <ul>
                     <li>
-                        <a>Tài Liệu</a>
-                        <ul>
+                        <a onClick={openResources}>Tài Liệu</a>
+                        <ul className={`${resource ? 'visible': 'hidden'}`}>
                             <li>Bài Hát</li>
                             <li>Trò Chơi</li>
                         </ul>
