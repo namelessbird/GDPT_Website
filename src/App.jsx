@@ -1,6 +1,7 @@
 import React from "react";
 import Navbar from "./Navbar"
 import Hero from "./Hero"
+import Activity from "./Activity";
 import "./styles.css"
 
 function App() {
@@ -8,6 +9,7 @@ function App() {
     <div>
       <Navbar />
       <Hero />
+      <Activity />
     </div>
   );
 }
