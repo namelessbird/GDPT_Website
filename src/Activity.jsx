@@ -17,6 +17,7 @@ export default function Activity(){
                 title="Styled Calendar"
                 className="styled-calendar-container w-full max-w-5xl border-0 h-[600px]"
                 data-cy="calendar-embed-iframe"
+                name="iFrameResizer0"
             />
         </div>
     )
