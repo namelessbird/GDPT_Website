@@ -15,7 +15,7 @@ export default function Activity(){
             <iframe
                 src="https://embed.styledcalendar.com/#W0C5a9mQi150NrgpTqTp"
                 title="Styled Calendar"
-                className="styled-calendar-container w-full max-w-5xl border-0 h-[600px]"
+                className="styled-calendar-container w-full max-w-5xl border-0 h-auto sm:h-[600px]"
                 data-cy="calendar-embed-iframe"
                 name="iFrameResizer0"
             />

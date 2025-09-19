@@ -12,13 +12,13 @@ const Main = () => (
     <Route exact path='/' element={<><Hero/><Activity/><Footer/></>}></Route>
     <Route exact path='/songs' element={<Footer/>}></Route>
     <Route exact path='/games' element={<Footer/>}></Route>
-    <Route exact path='/location' element={<><Location/><Footer/></>}></Route>
+    <Route exact path='/location' element={<><Location/></>}></Route>
   </Routes>
 )
 
 function App() {
   return (
-    <div>
+    <div /*className="sm:pt-[8.333vh]"*/>
       <Navbar />
       <Main />
     </div>
