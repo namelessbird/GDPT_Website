@@ -6,10 +6,10 @@ export default function Song(props){
 
     return(
         <div>
-            <h2 className=''>{props.title}</h2>
-            <p className={`${show ? "hidden" : "visible"} cursor-pointer underline`} onClick={() => setShow(true)}>Show Lyrics</p>
-            <p className={`${show ? "visible" : "hidden"}`}>{props.lyrics}</p>
-            <p className={`${show ? "visible" : "hidden"} cursor-pointer underline`} onClick={() => setShow(false)}>Collapse Lyrics</p>
+            <h2 className='font-bold underline'>{props.title}</h2>
+            <button className={`${show ? "hidden" : "visible"} cursor-pointer underline`} onClick={() => setShow(true)}>Show Lyrics</button>
+            <p className={`${show ? "visible" : "hidden"} whitespace-pre-line`}>{props.lyrics}</p>
+            <button className={`${show ? "visible" : "hidden"} cursor-pointer underline`} onClick={() => setShow(false)}>Collapse Lyrics</button>
         </div>
     )
 }

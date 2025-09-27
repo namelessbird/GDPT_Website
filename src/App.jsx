@@ -12,10 +12,8 @@ import "./styles.css"
 const Main = () => (
   <Routes>
     <Route exact path='/' element={<><Hero/><Activity/><Footer/></>}></Route>
-    <Route exact path='/songs' element={<Footer/>}></Route>
     <Route exact path='/games' element={<Games />}></Route>
     <Route exact path='/songs' element={<Songs />}></Route>
-    <Route exact path='/games' element={<Footer/>}></Route>
     <Route exact path='/location' element={<><Location/></>}></Route>
   </Routes>
 )
