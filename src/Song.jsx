@@ -7,9 +7,9 @@ export default function Song(props){
     return(
         <div>
             <h2 className='font-bold underline'>{props.title}</h2>
-            <button className={`${show ? "hidden" : "visible"} cursor-pointer underline`} onClick={() => setShow(true)}>Show Lyrics</button>
+            <button className={`${show ? "hidden" : "visible"} cursor-pointer underline`} onClick={() => setShow(true)}>Xem Lời Bài Hát</button>
             <p className={`${show ? "visible" : "hidden"} whitespace-pre-line`}>{props.lyrics}</p>
-            <button className={`${show ? "visible" : "hidden"} cursor-pointer underline`} onClick={() => setShow(false)}>Collapse Lyrics</button>
+            <button className={`${show ? "visible" : "hidden"} cursor-pointer underline`} onClick={() => setShow(false)}>Đóng Lời Bài Hát</button>
         </div>
     )
 }

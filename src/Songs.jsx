@@ -6,7 +6,7 @@ import "./styles.css"
 export default function Songs(){
     return(
         <div className='min-h-screen flex flex-col sm:pt-[8.333vh] text-center'>
-            <div className='flex-1 space-y-3'>
+            <div className='flex-1 flex flex-col justify-around'>
                 <Song 
                     title="Trầm Hương Đốt"
                     lyrics="Trầm hương đốt, xông ngát mười phương
@@ -23,6 +23,7 @@ export default function Songs(){
                     Phật đạo đồng cùng nhau tu tin tấn mau viên thành
                     Nam mô Bổn Sư Thích Ca Mâu Ni Phật
                     Nam mô Bổn Sư Thích Ca Mâu Ni Phật"
+                    className="flex-1"
                 />
                 <Song
                     title="Bốn Phương Trời"
@@ -30,6 +31,7 @@ export default function Songs(){
                     Không phân chia giọng nói tiếng cười,
                     Cùng nắm tay ta kết tình thân ái,
                     Trao cho nhau những gì thiết tha (2 lần)"
+                    className="flex-1"
                 />
                 <Song 
                     title="Anh Em Ta Về"
@@ -40,6 +42,7 @@ export default function Songs(){
                     Ba cầm tay chắc nhé, ko muốn ai chia lìa
                     Bốn nhớ rằng chúng ta bốn bể anh em một nhà
                     Năm nhớ mãi tình người trong câu ca"
+                    className="flex-1"
                 />
                 <Song
                     title="Hát To Hát Nhỏ"
@@ -51,6 +54,7 @@ export default function Songs(){
                     Rồi mình ngồi kể chuyện cho nhau nghe
                     Ta vui ca hát hát cho vui đời ta
                     Ta vui ca hát hát cho vui đời ta."
+                    className="flex-1"
                 />
                 <Song
                     title="Dây Thân Ái"
@@ -62,6 +66,37 @@ export default function Songs(){
                     Tiến bước theo hương thơm nhà lưu truyền
                     Dù cách xa ngàn dặm nhưng gần
                     Gang thép ta chia tay đừng buồn"
+                    className="flex-1"
+                />
+                <Song
+                    title="Quốc Ca Việt Nam Cộng Hòa"
+                    lyrics="Này công dân ơi, đứng lên đáp lời sông núi.
+                    Đồng lòng cùng đi hy sinh tiếc gì thân sống.
+                    Vì tương lai quốc dân, cùng xông pha khói tên,
+                    Làm sao cho núi sông từ nay luôn vững bền.
+                    Dù cho thây phơi trên gươm giáo.
+                    Thù nước lấy máu đào đem báo.
+                    Nòi giống lúc biến phải cần giải nguy,
+                    Người công dân luôn vững bền tâm trí,
+                    Hùng tráng quyết chiến đấu làm cho khắp nơi,
+                    Vang tiếng người nước Nam cho đến muôn đời.
+                    Công dân ơi! Mau hiến thân dưới cờ,
+                    Công dân ơi! Mau làm cho cõi bờ,
+                    Thoát cơn tàn phá vẻ vang nòi giống,
+                    Xứng danh nghìn năm giống Lạc Hồng!"
+                    className="flex-1"
+                />
+                <Song
+                    title="Sen Trắng"
+                    lyrics="Kìa xem đóa Sen Trắng thơm,
+                    Nghìn hào quang chiếu sáng trên bùn
+                    Hình dung Bổn Sư chúng ta,
+                    Lòng Từ Bi Trí Giác vô cùng
+                    Đồng thề nguyện một dạ theo Phật
+                    Nguyện sửa mình ngày thêm tinh khiết
+                    Đến bao giờ được tày Sen ngát
+                    Tỏa hương thơm Từ Bi tận cùng."
+                    className="flex-1"
                 />
             </div>
             <Footer />
