@@ -7,7 +7,7 @@ export default function Footer(){
             <p>&copy; 2025 GDPT Thiền Quang. All Rights Reserved</p>
             <p>For more information, contact: </p>
             <a className='underline'>999-999-999</a><br/>
-            <a className='underline'>placeholder@gmail.com</a>
+            <a className='underline' href="mailto:placeholder@gmail.com">placeholder@gmail.com</a>
             <p>Powered by React + Tailwind</p>
         </footer>
     )
