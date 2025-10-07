@@ -11,30 +11,29 @@ export default function Navbar(){
         <div>
             {/* <button className="fa-solid fa-bars scale-150 cursor-pointer pl-2 pt-2 sm:!hidden" onClick={() => setIsOpen(!isOpen)}/> */}
             <button
-                className="absolute top-4 left-4 scale-150 cursor-pointer sm:hidden"
+                className="absolute top-4 right-4 scale-150 cursor-pointer z-10 text-white sm:hidden"
                 onClick={() => setIsOpen(!isOpen)}
             >
                 <span className="fa-solid fa-bars"></span>
             </button>
 
 
-            {isOpen && (
+            {/* {isOpen && (
                 <div
                     className={`fixed inset-0 bg-black/30 z-10`}
                     onClick={() => setIsOpen(false)}
                 />
-            )}
+            )} */}
 
             
-            <nav className={`${isOpen ? "left-0" : "-left-1/6"} 
-                h-screen fixed top-0 transition-all duration-500 
-                ${isOpen ? "w-8/12 bg-[#384264] text-white" : "w-1/6 bg-white text-black"}
-                sm:w-screen sm:h-[10%] sm:!left-0 sm:!bg-[#384264] sm:text-white sm:flex sm:items-center sm:z-3`}>
-                <NavLink to="/"><img src="./images/Hoa_Sen.jpg" alt="logo" className="w-15 h-15 bg-white rounded-full ml-2" /></NavLink>
-                <ul className="sm:flex sm:items-center sm:justify-end sm:w-full sm:space-x-6 sm:pr-7">
-                    <li className="leading-none"><NavLink to="/songs" className="inline-flex items-center text-lg">Bài Hát</NavLink></li>
-                    <li className="leading-none"><NavLink to="/games" className="inline-flex items-center text-lg">Trò Chơi</NavLink></li>
-                    <li className="leading-none"><NavLink to="/location" className="inline-flex items-center text-lg">Địa Điểm</NavLink></li>
+            <nav className={`fixed top-0 transition-all duration-500 
+                ${isOpen ? "w-full h-screen bg-[#384264] text-white" : "w-full h-18 bg-[#384264] text-white"}
+                sm:w-screen sm:h-18 sm:!bg-[#384264] sm:text-white sm:flex sm:items-center sm:z-3`}>
+                <NavLink to="/"><img src="./images/Hoa_Sen.jpg" alt="logo" className="w-15 bg-white rounded-full ml-2" onClick={() => setIsOpen(false)}/></NavLink>
+                <ul className={`${isOpen ? "visible opacity-100" : "hidden opacity-0"} transition-opacity duration-1000 text-center sm:flex sm:items-center sm:justify-end sm:w-full sm:space-x-6 sm:pr-7`}>
+                    <li className="leading-none"><NavLink to="/songs" className="inline-flex items-center text-lg" onClick={() => setIsOpen(false)}>Bài Hát</NavLink></li>
+                    <li className="leading-none"><NavLink to="/games" className="inline-flex items-center text-lg" onClick={() => setIsOpen(false)}>Trò Chơi</NavLink></li>
+                    <li className="leading-none"><NavLink to="/location" className="inline-flex items-center text-lg" onClick={() => setIsOpen(false)}>Địa Điểm</NavLink></li>
                 </ul>
             </nav>
 
