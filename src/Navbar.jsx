@@ -28,8 +28,8 @@ export default function Navbar(){
             
             <nav className={`${isOpen ? "left-0" : "-left-1/6"} 
                 h-screen fixed top-0 transition-all duration-500 
-                ${isOpen ? "w-1/2 bg-[#384264] text-white" : "w-1/6 bg-white text-black"}
-                sm:w-screen sm:h-1/12 sm:!left-0 sm:!bg-[#384264] sm:text-white sm:flex sm:items-center sm:z-3`}>
+                ${isOpen ? "w-8/12 bg-[#384264] text-white" : "w-1/6 bg-white text-black"}
+                sm:w-screen sm:h-[10%] sm:!left-0 sm:!bg-[#384264] sm:text-white sm:flex sm:items-center sm:z-3`}>
                 <NavLink to="/"><img src="./images/Hoa_Sen.jpg" alt="logo" className="w-15 h-15 bg-white rounded-full ml-2" /></NavLink>
                 <ul className="sm:flex sm:items-center sm:justify-end sm:w-full sm:space-x-6 sm:pr-7">
                     <li className="leading-none"><NavLink to="/songs" className="inline-flex items-center text-lg">Bài Hát</NavLink></li>

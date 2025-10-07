@@ -3,7 +3,7 @@ import "./styles.css"
 
 export default function Activity(){
     return(
-        <div className='justify-center flex py-5 px-5'>
+        <div className='justify-center flex flex-col py-5 px-5 text-center items-center'>
             {/* <iframe
                 src="https://calendar.google.com/calendar/embed?height=600&wkst=1&ctz=America%2FLos_Angeles&showPrint=0&src=cnl1cDI1NDRAZ21haWwuY29t&color=%23039be5"
                 className="w-[800px] h-[600px] border border-gray-500 rounded-md shadow-md"
