@@ -5,6 +5,7 @@ import '@fortawesome/fontawesome-free/css/all.min.css'
 
 export default function Navbar(){
     const [isOpen, setIsOpen] = React.useState(false)
+    //mongodb+srv://tqadmin:<db_password>@tq-cluster.l4yfnck.mongodb.net/?retryWrites=true&w=majority&appName=TQ-Cluster
 
      React.useEffect(() => {
         const handleResize = () => {
