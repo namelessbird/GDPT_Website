@@ -2,6 +2,8 @@ const express = require('express')
 const cors = require('cors')
 const bodyParser = require('body-parser')
 const router = require('./routes/router')
+require('dotenv').config()
+const mongoose = require('mongoose')
 
 const app = express()
 
@@ -16,7 +18,21 @@ const corsOptions = {
 app.use(cors(corsOptions))
 app.use('/', router)
 
-const port = 4000
-const server = app.listen(port, () => {
-    console.log(`Server is running on port ${port}`)
-})
+async function startServer() {
+    try {
+        await mongoose.connect(process.env.MONGO_URI);
+
+        console.log("Connected to MongoDB using Mongoose!");
+
+        const port = 4000;
+        app.listen(port, () => {
+            console.log(`Server is running on port ${port}`);
+        });
+
+    } catch (error) {
+        console.error("Failed to connect to MongoDB:", error);
+        process.exit(1);
+    }
+}
+
+startServer();

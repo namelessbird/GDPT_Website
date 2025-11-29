@@ -6,12 +6,14 @@ import Footer from "./Footer";
 import Location from './Location';
 import Songs from './Songs';
 import Games from "./Games";
+import Admin from "./Admin";
 import {Routes, Route} from 'react-router-dom';
 import "./styles.css"
 
 const Main = () => (
   <Routes>
-    <Route exact path='/' element={<><Hero/><Activity/><Footer/></>}></Route>
+    {/*<Route exact path='/' element={<><Hero/><Activity/><Footer/></>}></Route>*/}
+    <Route exact path='/' element ={<Admin/>}></Route>
     <Route exact path='/games' element={<Games />}></Route>
     <Route exact path='/songs' element={<Songs />}></Route>
     <Route exact path='/location' element={<><Location/></>}></Route>
@@ -21,7 +23,7 @@ const Main = () => (
 function App() {
   return (
     <div /*className="sm:pt-[8.333vh]"*/>
-      <Navbar />
+      {/* <Navbar /> */}
       <Main />
     </div>
   );
