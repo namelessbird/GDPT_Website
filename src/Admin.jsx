@@ -1,12 +1,32 @@
 import React from "react";
 import "./styles.css"
+import axios from 'axios'
 
 export default function Admin(){
     const [user, setUser] = React.useState("")
     const [pass, setPass] = React.useState("")
+    const [errorMessage, setErrorMessage] = React.useState("")
 
-    function handleSubmit(e){
+     const handleSubmit = async(e) => {
         e.preventDefault()
+
+        try{
+            const data = {
+                user: user,
+                pass: pass
+            }
+            const response = await axios.post('http://localhost:4000/auth', data)
+            console.log("user found")
+            window.location.replace('/songs')
+        } catch (error){
+            if(error.response){
+                setErrorMessage(error.response.data.message)
+            }
+            else{
+                setErrorMessage("Network error, please try again")
+            }
+        }
+
     }
 
     return(
@@ -22,6 +42,9 @@ export default function Admin(){
                     onChange={(e) => setPass(e.target.value)} required></input>
                 </label>
                 <button type="submit" className="text-white bg-[#384264] cursor-pointer py-1.5 mx-[25%] rounded-md hover:brightness-80">Log In</button>
+                {errorMessage && (
+                    <p className="text-red-500 pt-3 -mb-4">{errorMessage}</p>
+                )}
             </form>
             <a className="text-white cursor-pointer underline pt-2.5">Go back to Home</a>
         </div>
