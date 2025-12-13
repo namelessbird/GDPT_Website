@@ -2,7 +2,7 @@ import React from "react";
 import "./styles.css"
 import axios from 'axios'
 
-export default function Admin(){
+export default function Login(){
     const [user, setUser] = React.useState("")
     const [pass, setPass] = React.useState("")
     const [errorMessage, setErrorMessage] = React.useState("")
@@ -15,9 +15,14 @@ export default function Admin(){
                 user: user,
                 pass: pass
             }
-            const response = await axios.post('http://localhost:4000/auth', data)
+            const response = await axios.post(
+                'http://localhost:4000/auth',
+                data,
+                { withCredentials: true }
+            );
+
             console.log("user found")
-            window.location.replace('/songs')
+            window.location.replace("/admin-dashboard")
         } catch (error){
             if(error.response){
                 setErrorMessage(error.response.data.message)
@@ -46,7 +51,7 @@ export default function Admin(){
                     <p className="text-red-500 pt-3 -mb-4">{errorMessage}</p>
                 )}
             </form>
-            <a className="text-white cursor-pointer underline pt-2.5">Go back to Home</a>
+            <a href="/" className="text-white cursor-pointer underline pt-2.5">Go back to Home</a>
         </div>
     )
 }
