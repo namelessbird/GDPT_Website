@@ -1,6 +1,8 @@
-import React from "react";
-import axios from "axios";
-import { NavLink } from "react-router-dom";
+import React from "react"
+import axios from "axios"
+import { NavLink } from "react-router-dom"
+import AdminEvents from "./AdminEvents"
+import AdminSongs from "./AdminSongs"
 
 export default function Dashboard() {
    
@@ -14,7 +16,7 @@ export default function Dashboard() {
 
     const [tab, setTab] = React.useState(0);
 
-    const tabs = ["See Events", "Add Event", "Delete Event"];
+    const tabs = ["Events", "Songs"];
 
     return (
         <div className="flex flex-col min-h-screen bg-gray-100">
@@ -55,30 +57,9 @@ export default function Dashboard() {
                     </div>
                     )}
 
-                    {tab === 1 && (
-                    <div>
-                        <h1 className="text-xl sm:text-2xl font-semibold mb-4">Add Event</h1>
+                    {tab === 1 && <AdminEvents/>}
 
-                        <form className="space-y-4">
-                            <input type="text" placeholder="Event Name" className="w-full border rounded px-3 py-2"/>
-                            <input type="date" className="w-full border rounded px-3 py-2" />
-                            <textarea placeholder="Event Description" rows={4} className="w-full border rounded px-3 py-2"/>
-                            <button className="w-full sm:w-auto bg-[#384264] text-white px-6 py-2 rounded hover:brightness-90">Add Event</button>
-                        </form>
-                    </div>
-                    )}
-
-                    {tab === 2 && (
-                    <div>
-                        <h1 className="text-xl sm:text-2xl font-semibold mb-4">Delete Event</h1>
-                        <div className="space-y-3">
-                            <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center border p-3 rounded">
-                                <span className="font-medium">Event Name Example</span>
-                                <button className="text-red-600 hover:underline mt-2 sm:mt-0">Delete</button>
-                            </div>
-                        </div>
-                    </div>
-                    )}
+                    {tab === 2 && <AdminSongs/>}
                 </div>
             </main>
         </div>

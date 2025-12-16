@@ -7,7 +7,7 @@ import Location from './Location';
 import Songs from './Songs';
 import Games from "./Games";
 import Login from "./Login";
-import Dashboard from "./Dashboard";
+import Dashboard from "./admin/Dashboard";
 import {Routes, Route} from 'react-router-dom';
 import "./styles.css"
 
