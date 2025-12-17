@@ -3,6 +3,7 @@ const cors = require('cors')
 const bodyParser = require('body-parser')
 const router = require('./routes/router')
 const auth = require('./routes/auth')
+const event = require('./routes/events')
 const adminFilter = require('./routes/adminFilter')
 const session = require('express-session')
 require('dotenv').config()
@@ -28,15 +29,16 @@ app.use(session(
         resave:false, 
         cookie: {
             httpOnly: true,
-            secure: false,      // true breaks localhost
-            sameSite: 'lax'     // allows cross-origin requests in dev
+            secure: false,      
+            sameSite: 'lax'  
         }
     }
 ))
 
-app.use('/', router)
-app.use('/', adminFilter)
-app.use('/', auth)
+// app.use('/', router)
+app.use('/admin-dashboard', adminFilter)
+app.use('/auth', auth)
+app.use('/events', event)
 
 async function startServer() {
     try {

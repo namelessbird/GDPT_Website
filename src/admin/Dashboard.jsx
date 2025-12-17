@@ -45,21 +45,8 @@ export default function Dashboard() {
 
             <main className="flex-1 p-4 sm:p-6">
                 <div className="max-w-5xl mx-auto bg-white rounded-lg shadow p-4 sm:p-6">
-                    {tab === 0 && (
-                    <div>
-                        <h1 className="text-xl sm:text-2xl font-semibold mb-4">All Events</h1>
-                        <div className="space-y-3">
-                            <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center border p-3 rounded">
-                                <span className="font-medium">Event Name Example</span>
-                                <span className="text-sm text-gray-500">2025-05-01</span>
-                            </div>
-                        </div>
-                    </div>
-                    )}
-
-                    {tab === 1 && <AdminEvents/>}
-
-                    {tab === 2 && <AdminSongs/>}
+                    {tab === 0 && <AdminEvents/>}
+                    {tab === 1 && <AdminSongs/>}
                 </div>
             </main>
         </div>

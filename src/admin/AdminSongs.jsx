@@ -10,12 +10,13 @@ export default function AdminSongs(){
     }, [])
 
     const fetchSongs = async () => {
-        const res = await api.get("")
+        //const res = await api.get("")
         setSongs(res.data)
+        console.log("Songs:")
     }
 
     const deleteSong = async () => {
-        const res = await api.get("")
+        //const res = await api.get("")
         fetchSongs()
     }
 

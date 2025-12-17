@@ -5,7 +5,7 @@ const bcrypt = require('bcrypt')
 const sanitize = require('mongo-sanitize')
 const {Admin} = require('../models/schemas')
 
-auth.post('/auth', async (req, res) => {
+auth.post('/', async (req, res) => {
     try {
         const { user, pass } = sanitize(req.body)
         let sesh = req.session
