@@ -7,14 +7,12 @@ export default function AdminEvents(){
     const [editEvent, setEdit] = React.useState(null)
 
     React.useEffect(() => {
-        console.log("calling from Events")
         fetchEvents()
     }, [])
 
     const fetchEvents = async () => {
         const res = await api.get("http://localhost:4000/events")
         setEvents(res.data)
-        console.log("events: ", res.data)
     }
 
     const deleteEvent = async () => {

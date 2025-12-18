@@ -1,19 +1,19 @@
 const mongoose = require('mongoose')
 
 const adminSchema = new mongoose.Schema({
-    name: {type:String},
-    password: {type:String}
+    name: {type:String, required:true},
+    password: {type:String, required:true}
 })
 
 const eventSchema = new mongoose.Schema({
-    name: {type:String},
-    description: {type:String},
-    date: {type:Date}
+    name: {type:String, required:true},
+    description: {type:String, required:true},
+    date: {type:Date, required:true}
 })
 
 const songSchema = new mongoose.Schema({
-    title: {type:String},
-    lyrics: {type:String}
+    title: {type:String, required:true},
+    lyrics: {type:String, required:true}
 })
 
 const Admin = mongoose.model("Admin", adminSchema, "Admins")

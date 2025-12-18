@@ -8,7 +8,6 @@ const requireAdmin = require('../loginFilter')
 event.get('/', requireAdmin, async(req, res) => {
     try{
         const allEvents = await Event.find().lean()
-        console.log("Events found: ", allEvents)
         res.status(200).json(allEvents)
     } catch(err){
         console.log(err)
@@ -30,6 +29,17 @@ event.delete('/:id', requireAdmin, async (req, res) => {
             return res.status(404).json({ message: "Event not found" });
         }
         res.status(200).json({ message: "Event deleted successfully" });
+    } catch(err){
+        console.log(err)
+        res.status(500).json({ message: "Server error" })
+    }
+})
+
+event.post('/', requireAdmin, async (req, res) => {
+    try{
+        const {title, description, date} = sanitize(req.body)
+        await Event.create({name: title, description, date})
+        res.status(201).json({ message: "Added event successfully"})
     } catch(err){
         console.log(err)
         res.status(500).json({ message: "Server error" })
