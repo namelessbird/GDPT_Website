@@ -15,8 +15,9 @@ export default function AdminEvents(){
         setEvents(res.data)
     }
 
-    const deleteEvent = async () => {
-        const res = await api.get("")
+    const deleteEvent = async (id) => {
+        console.log(id)
+        const res = await api.delete(`http://localhost:4000/events/${id}`)
         fetchEvents()
     }
 
@@ -73,7 +74,7 @@ export default function AdminEvents(){
       {editEvent && (
         <EditModal
           item={editEvent}
-          type="song"
+          type="event"
           onClose={() => setEdit(null)}
           onSuccess={fetchEvents}
         />

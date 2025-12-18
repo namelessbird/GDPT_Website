@@ -17,7 +17,7 @@ event.get('/', requireAdmin, async(req, res) => {
 
 event.delete('/:id', requireAdmin, async (req, res) => {
     try{
-        const {id} = sanitize(req.body)
+        const id = sanitize(req.params.id)
 
         if(!id){
             return res.status(400).json({ message: "Event ID required" })
