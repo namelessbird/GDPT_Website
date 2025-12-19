@@ -1,6 +1,7 @@
 import React from 'react'
 import api from '../axios'
 import EventForm from './EventForm'
+import EditModal from './EditModal'
 
 export default function AdminEvents(){
     const [events, setEvents] = React.useState([])
