@@ -8,15 +8,18 @@ export default function AdminEvents(){
     const [editEvent, setEdit] = React.useState(null)
     const [sortOrder, setSortOrder] = React.useState("asc")
     const [filter, setFilter] = React.useState("all")
+    const [page, setPage] = React.useState(1)
+    const limit = 5 
+
 
     React.useEffect(() => {
         fetchEvents()
-    }, [sortOrder, filter])
+    }, [page, sortOrder, filter])
 
 
 
     const fetchEvents = async () => {
-        const res = await api.get(`http://localhost:4000/events/${sortOrder}/${filter}`)
+        const res = await api.get(`http://localhost:4000/events/${sortOrder}/${filter}?page=${page}&limit=${limit}`)
         setEvents(res.data)
     }
 
@@ -56,7 +59,10 @@ export default function AdminEvents(){
 
           <select
             value={filter}
-            onChange={e => setFilter(e.target.value)}
+            onChange={e => {
+              setFilter(e.target.value)
+              setPage(1)
+            }}
             className="px-3 py-1 border rounded text-sm bg-white cursor-pointer"
           >
             <option value="all">All</option>
@@ -79,13 +85,13 @@ export default function AdminEvents(){
             <div className="flex gap-3 mt-3 sm:mt-0">
               <button
                 onClick={() => setEdit(event)}
-                className="px-3 py-1 border rounded hover:bg-gray-100 transition"
+                className="px-3 py-1 border rounded hover:bg-gray-100 transition cursor-pointer"
               >
                 Edit
               </button>
               <button
                 onClick={() => deleteEvent(event._id)}
-                className="px-3 py-1 border rounded text-red-600 hover:bg-red-50 transition"
+                className="px-3 py-1 border rounded text-red-600 hover:bg-red-50 transition cursor-pointer"
               >
                 Delete
               </button>
@@ -93,6 +99,31 @@ export default function AdminEvents(){
           </div>
         ))}
       </div>
+
+      <div className="flex justify-center items-center gap-3 mt-8">
+        <button
+          onClick={() => setPage(p => Math.max(1, p - 1))}
+          disabled={page === 1}
+          className={`px-4 py-2 border rounded 
+            ${page === 1 ? "text-gray-400 cursor-not-allowed" : "hover:bg-gray-100 cursor-pointer"}`}
+        >
+          ←
+        </button>
+
+        <span className="px-4 py-2 border rounded bg-gray-50">
+          {page}
+        </span>
+
+        <button
+          onClick={() => setPage(p => p + 1)}
+          disabled={events.length < limit}
+          className={`px-4 py-2 border rounded 
+            ${events.length < limit ? "text-gray-400 cursor-not-allowed" : "hover:bg-gray-100 cursor-pointer"}`}
+        >
+          →
+        </button>
+      </div>
+
 
 
       {editEvent && (

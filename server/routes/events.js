@@ -18,7 +18,10 @@ event.get('/', requireAdmin, async (req, res) => {
 event.get('/:sort/:filter', requireAdmin, async (req, res) => {
     try{
         const { sort, filter } = sanitize(req.params)
+        const page = parseInt(sanitize(req.query.page)) || 1
+        const limit = parseInt(sanitize(req.query.limit)) || 5
 
+        const skip = (page - 1) * limit
         const sortNum = sort === "asc" ? 1 : sort === "desc" ? -1 : null
         if (sortNum === null) {
             return res.status(400).json({ message: "Invalid sort option" })
@@ -38,6 +41,8 @@ event.get('/:sort/:filter', requireAdmin, async (req, res) => {
         const allEvents = await Event
             .find(query)
             .sort({ date: sortNum })
+            .skip(skip)
+            .limit(limit)
             .lean()
 
         res.status(200).json(allEvents)
