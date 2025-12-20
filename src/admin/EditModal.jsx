@@ -1,4 +1,5 @@
 import React from 'react'
+import api from '../axios'
 
 export default function EditModal(props){
     const [title, setTitle] = React.useState(props.item.name)
@@ -25,8 +26,17 @@ export default function EditModal(props){
 
     const updateEvent = async (id) => {
         console.log("Updating event with id: ", id)
+        await api.post("http://localhost:4000/events/update", {
+            id,
+            title,
+            description,
+            date
+        })
+        .catch((err) => console.log("Failed to update event: ", err))
+        props.onClose()
+        props.onSuccess()
     }
-    
+
     return(
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50"
             onClick={props.onClose}>

@@ -46,4 +46,15 @@ event.post('/', requireAdmin, async (req, res) => {
     }
 })
 
+event.post('/update', requireAdmin, async (req, res) => {
+    try{
+        const {id, title, description, date} = sanitize(req.body)
+        await Event.findByIdAndUpdate(id, {name: title, description, date})
+        res.status(200).json({ message: "Event updated successfully" });
+    } catch(err){
+        console.log(err)
+        res.status(500).json({ message: "Server error" })
+    }
+})
+
 module.exports = event
