@@ -5,9 +5,41 @@ const sanitize = require('mongo-sanitize')
 const {Event} = require('../models/schemas')
 const requireAdmin = require('../loginFilter')
 
-event.get('/', requireAdmin, async(req, res) => {
+event.get('/', requireAdmin, async (req, res) => {
     try{
         const allEvents = await Event.find().lean()
+        res.status(200).json(allEvents)
+    } catch(err){
+        console.log(err)
+        res.status(500).json({ message: "Server error" })
+    }
+})
+
+event.get('/:sort/:filter', requireAdmin, async (req, res) => {
+    try{
+        const { sort, filter } = sanitize(req.params)
+
+        const sortNum = sort === "asc" ? 1 : sort === "desc" ? -1 : null
+        if (sortNum === null) {
+            return res.status(400).json({ message: "Invalid sort option" })
+        }
+
+        const now = new Date()
+        let query = {}
+
+        if (filter === "future") {
+            query.date = { $gte: now }
+        } else if (filter === "past") {
+            query.date = { $lt: now }
+        } else if (filter !== "all") {
+            return res.status(400).json({ message: "Invalid filter option" })
+        }
+
+        const allEvents = await Event
+            .find(query)
+            .sort({ date: sortNum })
+            .lean()
+
         res.status(200).json(allEvents)
     } catch(err){
         console.log(err)
@@ -26,9 +58,9 @@ event.delete('/:id', requireAdmin, async (req, res) => {
         const deleted = await Event.findByIdAndDelete(id)
 
         if (!deleted) {
-            return res.status(404).json({ message: "Event not found" });
+            return res.status(404).json({ message: "Event not found" })
         }
-        res.status(200).json({ message: "Event deleted successfully" });
+        res.status(200).json({ message: "Event deleted successfully" })
     } catch(err){
         console.log(err)
         res.status(500).json({ message: "Server error" })
@@ -50,7 +82,7 @@ event.post('/update', requireAdmin, async (req, res) => {
     try{
         const {id, title, description, date} = sanitize(req.body)
         await Event.findByIdAndUpdate(id, {name: title, description, date})
-        res.status(200).json({ message: "Event updated successfully" });
+        res.status(200).json({ message: "Event updated successfully" })
     } catch(err){
         console.log(err)
         res.status(500).json({ message: "Server error" })

@@ -6,13 +6,17 @@ import EditModal from './EditModal'
 export default function AdminEvents(){
     const [events, setEvents] = React.useState([])
     const [editEvent, setEdit] = React.useState(null)
+    const [sortOrder, setSortOrder] = React.useState("asc")
+    const [filter, setFilter] = React.useState("all")
 
     React.useEffect(() => {
         fetchEvents()
-    }, [])
+    }, [sortOrder, filter])
+
+
 
     const fetchEvents = async () => {
-        const res = await api.get("http://localhost:4000/events")
+        const res = await api.get(`http://localhost:4000/events/${sortOrder}/${filter}`)
         setEvents(res.data)
     }
 
@@ -41,6 +45,25 @@ export default function AdminEvents(){
         <h2 className="text-xl sm:text-2xl font-semibold mb-4 sm:text-left">
           All Events
         </h2>
+
+        <div className="flex gap-2 self-end">
+          <button
+            onClick={() => setSortOrder(o => (o === "asc" ? "desc" : "asc"))}
+            className="px-3 py-1 border rounded text-sm hover:bg-gray-100 transition cursor-pointer"
+          >
+            Sort {sortOrder === "asc" ? "↑" : "↓"}
+          </button>
+
+          <select
+            value={filter}
+            onChange={e => setFilter(e.target.value)}
+            className="px-3 py-1 border rounded text-sm bg-white cursor-pointer"
+          >
+            <option value="all">All</option>
+            <option value="future">Future</option>
+            <option value="past">Past</option>
+          </select>
+        </div>
 
         {events.map(event => (
           <div
