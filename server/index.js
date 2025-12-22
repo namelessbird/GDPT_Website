@@ -4,6 +4,7 @@ const bodyParser = require('body-parser')
 const router = require('./routes/router')
 const auth = require('./routes/auth')
 const event = require('./routes/events')
+const song = require('./routes/songs')
 const adminFilter = require('./routes/adminFilter')
 const session = require('express-session')
 require('dotenv').config()
@@ -39,6 +40,7 @@ app.use(session(
 app.use('/admin-dashboard', adminFilter)
 app.use('/auth', auth)
 app.use('/events', event)
+app.use('/songs', song)
 
 async function startServer() {
     try {

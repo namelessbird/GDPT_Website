@@ -1,7 +1,7 @@
 import React from 'react'
 import api from '../axios'
 import EventForm from './EventForm'
-import EditModal from './EditModal'
+import EditModal from './EventEditModal'
 
 export default function AdminEvents(){
     const [events, setEvents] = React.useState([])
@@ -15,7 +15,6 @@ export default function AdminEvents(){
     React.useEffect(() => {
         fetchEvents()
     }, [page, sortOrder, filter])
-
 
 
     const fetchEvents = async () => {

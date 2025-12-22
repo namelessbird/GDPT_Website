@@ -1,10 +1,9 @@
 import React from 'react'
 import api from '../axios'
 
-export default function EditModal(props){
-    const [title, setTitle] = React.useState(props.item.name)
-    const [date, setDate] = React.useState(new Date(props.item.date).toISOString().split("T")[0])
-    const [description, setDescription] = React.useState(props.item.description)
+export default function EventEditModal(props){
+    const [title, setTitle] = React.useState(props.item.title)
+    const [lyrics, setLyrics] = React.useState(props.item.lyrics)
 
     // React.useEffect(() => {
     //     if (props.item) {
@@ -24,15 +23,14 @@ export default function EditModal(props){
         };
     }, []);
 
-    const updateEvent = async (id) => {
-        console.log("Updating event with id: ", id)
-        await api.post("http://localhost:4000/events/update", {
+    const updateSong = async (id) => {
+        console.log("Updating song with id: ", id)
+        await api.post("http://localhost:4000/songs/update", {
             id,
             title,
-            description,
-            date
+            lyrics,
         })
-        .catch((err) => console.log("Failed to update event: ", err))
+        .catch((err) => console.log("Failed to update song: ", err))
         props.onClose()
         props.onSuccess()
     }
@@ -45,14 +43,13 @@ export default function EditModal(props){
                 <button
                     onClick={props.onClose}
                     className="absolute right-2 top-0 text-gray-500 hover:text-black text-4xl cursor-pointer">×</button>
-                <h1 className="text-xl sm:text-2xl font-semibold mb-4 sm:text-left">Edit Event</h1>
+                <h1 className="text-xl sm:text-2xl font-semibold mb-4 sm:text-left">Edit Song</h1>
                 <form className="space-y-4" onSubmit={(e) =>{ 
                         e.preventDefault()
-                        updateEvent(props.item._id)
+                        updateSong(props.item._id)
                     }}>
-                    <input onChange={(e) => setTitle(e.target.value)} value={title} type="text" placeholder="Event Name" className="w-full border rounded px-3 py-2" required/>
-                    <input onChange={(e) => setDate(e.target.value)} value={date} type="date" className="w-full border rounded px-3 py-2" required/>
-                    <textarea onChange={(e) => setDescription(e.target.value)} value={description} placeholder="Event Description" rows={4} className="w-full border rounded px-3 py-2" required/>
+                    <input onChange={(e) => setTitle(e.target.value)} value={title} type="text" placeholder="Song Title" className="w-full border rounded px-3 py-2" required/>
+                    <textarea onChange={(e) => setLyrics(e.target.value)} value={lyrics} placeholder="Song Lyrics" rows={4} className="w-full border rounded px-3 py-2" required/>
                     <button className="w-full sm:w-auto bg-[#384264] text-white px-6 py-2 rounded hover:brightness-90">Save Changes</button>
                 </form>
             </div>
