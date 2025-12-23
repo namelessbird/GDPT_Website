@@ -5,7 +5,7 @@ const sanitize = require('mongo-sanitize')
 const {Song} = require('../models/schemas')
 const requireAdmin = require('../loginFilter')
 
-song.get('/', requireAdmin, async (req, res) => {
+song.get('/', async (req, res) => {
     try{
         const allEvents = await Song.find().lean()
         res.status(200).json(allEvents)
@@ -15,20 +15,18 @@ song.get('/', requireAdmin, async (req, res) => {
     }
 })
 
-song.get('/:sort', requireAdmin, async (req, res) => {
+song.get('/:sort', async (req, res) => {
     try{
+        const length = await Song.countDocuments()
         const { sort } = sanitize(req.params)
         const page = parseInt(sanitize(req.query.page)) || 1
-        const limit = parseInt(sanitize(req.query.limit)) || 5
+        const limit = parseInt(sanitize(req.query.limit)) || length
 
         const skip = (page - 1) * limit
         const sortNum = sort === "asc" ? 1 : sort === "desc" ? -1 : null
         if (sortNum === null) {
             return res.status(400).json({ message: "Invalid sort option" })
         }
-
-        const now = new Date()
-        let query = {}
 
         const allSongs = await Song
             .find()

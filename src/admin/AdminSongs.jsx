@@ -63,7 +63,7 @@ export default function AdminSongs(){
           >
             <div className="flex-1">
               <h3 className="text-lg sm:text-xl font-semibold text-gray-800">{song.title}</h3>
-              <p className="text-gray-600 mt-1">{song.lyrics}</p>
+              <p className="text-gray-600 mt-1 whitespace-pre-line">{song.lyrics}</p>
             </div>
 
             <div className="flex gap-3 mt-3 sm:mt-0">
@@ -107,7 +107,6 @@ export default function AdminSongs(){
           →
         </button>
       </div>
-
 
 
       {editSong && (
