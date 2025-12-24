@@ -5,7 +5,7 @@ const sanitize = require('mongo-sanitize')
 const {Event} = require('../models/schemas')
 const requireAdmin = require('../loginFilter')
 
-event.get('/', requireAdmin, async (req, res) => {
+event.get('/', async (req, res) => {
     try{
         const allEvents = await Event.find().lean()
         res.status(200).json(allEvents)
@@ -15,7 +15,7 @@ event.get('/', requireAdmin, async (req, res) => {
     }
 })
 
-event.get('/:sort/:filter', requireAdmin, async (req, res) => {
+event.get('/:sort/:filter', async (req, res) => {
     try{
         const { sort, filter } = sanitize(req.params)
         const page = parseInt(sanitize(req.query.page)) || 1
