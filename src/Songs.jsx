@@ -18,7 +18,7 @@ export default function Songs(){
     }, [])
 
     return (
-        <div className="min-h-screen flex flex-col bg-gray-50 sm:pt-[8.333vh]">
+        <div className="min-h-screen flex flex-col bg-gray-50 pt-[15vh] sm:pt-[8.333vh]">
             <main className="flex-1 px-4 py-6 sm:px-8 lg:px-20">
                 <h1 className="text-3xl font-bold text-center mb-8">
                     Bài Hát Sinh Hoạt

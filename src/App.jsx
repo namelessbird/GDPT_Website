@@ -14,12 +14,13 @@ import "./styles.css"
 
 const Main = () => (
   <Routes>
-    <Route exact path='/' element={<><Navbar/><Hero/><Activity/><Events/><Footer/></>}></Route>
+    <Route exact path='/' element={<><Navbar/><Hero/><Events/><Footer/></>}></Route>
     <Route exact path='/games' element={<><Navbar/><Games /></>}></Route>
     <Route exact path='/songs' element={<><Navbar/><Songs /></>}></Route>
     <Route exact path='/location' element={<><Navbar/><Location/></>}></Route>
     <Route exact path='/admin-dashboard' element={<Dashboard/>}></Route>
     <Route exact path='/login' element={<Login />}></Route>
+    <Route exact path='/calendar' element={<><Navbar/><Activity/></>}></Route>
   </Routes>
 )
 

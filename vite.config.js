@@ -8,6 +8,6 @@ export default defineConfig({
     react(),
     tailwindcss({
       primary: './src/styles.css'
-    }), // Add the plugin to your plugins array
+    }),
   ],
 });

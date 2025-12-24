@@ -1,24 +1,31 @@
 import React from 'react'
+import Footer from './Footer'
 import "./styles.css"
+
 
 export default function Activity(){
     return(
-        <div className='justify-center flex flex-col py-5 px-5 text-center items-center'>
-            {/* <iframe
-                src="https://calendar.google.com/calendar/embed?height=600&wkst=1&ctz=America%2FLos_Angeles&showPrint=0&src=cnl1cDI1NDRAZ21haWwuY29t&color=%23039be5"
-                className="w-[800px] h-[600px] border border-gray-500 rounded-md shadow-md"
-                frameBorder="0"
-                scrolling="no"
-                title="Google Calendar"
-            >
-            </iframe> */}
-            <iframe
-                src="https://embed.styledcalendar.com/#W0C5a9mQi150NrgpTqTp"
-                title="Styled Calendar"
-                className="styled-calendar-container w-full max-w-5xl border-0 h-auto sm:h-[600px]"
-                data-cy="calendar-embed-iframe"
-                name="iFrameResizer0"
-            />
+        /* Sticky Footer Layout */
+        <div className='min-h-screen flex flex-col pt-[15vh] sm:pt-[10vh]'>
+            
+            <main className="flex-grow flex flex-col items-center px-5 text-center">
+                
+                {/* Page Title */}
+                <div className="mb-8 w-full max-w-5xl">
+                    <h1 className="text-3xl font-bold text-center">
+                        Lịch Hoạt Động
+                    </h1>  
+                </div>
+
+                <iframe
+                    src="https://embed.styledcalendar.com/#W0C5a9mQi150NrgpTqTp"
+                    title="Styled Calendar"
+                    className="styled-calendar-container w-full max-w-5xl border-0 h-[500px] sm:h-[600px] mb-10 rounded-xl shadow-inner"
+                    data-cy="calendar-embed-iframe"
+                />
+            </main>
+
+            <Footer />
         </div>
     )
 }
