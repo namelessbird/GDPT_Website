@@ -9,6 +9,7 @@ export default function AdminSongs(){
     const [sortOrder, setSortOrder] = React.useState("asc")
     const [page, setPage] = React.useState(1)
     const limit = 5 
+    const apiUrl = import.meta.env.VITE_API_URL
 
 
     React.useEffect(() => {
@@ -17,13 +18,13 @@ export default function AdminSongs(){
 
 
     const fetchSongs = async () => {
-        const res = await api.get(`http://localhost:4000/songs/${sortOrder}?page=${page}&limit=${limit}`)
+        const res = await api.get(`${apiUrl}/songs/${sortOrder}?page=${page}&limit=${limit}`)
         setSongs(res.data)
     }
 
     const deleteSong = async (id) => {
         console.log(id)
-        const res = await api.delete(`http://localhost:4000/songs/${id}`)
+        const res = await api.delete(`${apiUrl}/songs/${id}`)
         fetchSongs()
     }
 

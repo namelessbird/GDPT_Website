@@ -3,7 +3,6 @@ import './styles.css'
 
 export default function Footer(){
     return(
-        /* w-full ensures it stretches, and mt-auto is a safety for flex layouts */
         <footer className='w-full bg-[#384264] text-white text-center py-6 mt-auto'>
             <div className="px-4">
                 <p>&copy; 2025 GDPT Thiền Quang. All Rights Reserved</p>

@@ -5,9 +5,10 @@ import AdminEvents from "./AdminEvents"
 import AdminSongs from "./AdminSongs"
 
 export default function Dashboard() {
-   
+    const apiUrl = import.meta.env.VITE_API_URL
+
     React.useEffect(() => {
-        axios.get("http://localhost:4000/admin-dashboard", {
+        axios.get(`${apiUrl}/admin-dashboard`, {
             withCredentials: true
         }).catch(() => {
             window.location.replace('/login');

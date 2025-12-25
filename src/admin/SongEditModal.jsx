@@ -4,28 +4,19 @@ import api from '../axios'
 export default function EventEditModal(props){
     const [title, setTitle] = React.useState(props.item.title)
     const [lyrics, setLyrics] = React.useState(props.item.lyrics)
-
-    // React.useEffect(() => {
-    //     if (props.item) {
-    //     setTitle(props.item.name)
-    //     setDescription(props.item.description)
-    //     setDate(new Date(props.item.date).toISOString().split("T")[0])
-    //     }
-    // }, [props.item])
+    const apiUrl = import.meta.env.VITE_API_URL
 
     React.useEffect(() => {
-        // Disable background scroll
         document.body.style.overflow = "hidden";
 
         return () => {
-            // Re-enable scroll when modal closes
             document.body.style.overflow = "";
         };
     }, []);
 
     const updateSong = async (id) => {
         console.log("Updating song with id: ", id)
-        await api.post("http://localhost:4000/songs/update", {
+        await api.post(`${apiUrl}songs/update`, {
             id,
             title,
             lyrics,

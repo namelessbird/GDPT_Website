@@ -5,12 +5,10 @@ import "./styles.css"
 
 export default function Activity(){
     return(
-        /* Sticky Footer Layout */
         <div className='min-h-screen flex flex-col pt-[15vh] sm:pt-[10vh]'>
             
             <main className="flex-grow flex flex-col items-center px-5 text-center">
                 
-                {/* Page Title */}
                 <div className="mb-8 w-full max-w-5xl">
                     <h1 className="text-3xl font-bold text-center">
                         Lịch Hoạt Động

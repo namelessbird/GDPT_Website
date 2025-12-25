@@ -5,17 +5,21 @@ import api from './axios'
 
 export default function Songs(){
     const [songs, setSongs] = React.useState([])
+    const apiUrl = import.meta.env.VITE_API_URL
 
-    const fetchSongs = async () => {
-        const res = await api.get('http://localhost:4000/songs/desc')
-        .catch((err) => console.log("Error fetching songs: ", err))
-        setSongs(res.data)
-        console.log(res.data)
-    }
 
     React.useEffect(() => {
+        const fetchSongs = async () => {
+            try {
+                const res = await api.get(`${apiUrl}/songs/desc`)
+                setSongs(res.data)
+            } catch(err) {
+                console.error("Error fetching songs: ", err)
+                setSongs([]) 
+            }
+        }
         fetchSongs()
-    }, [])
+    }, []) 
 
     return (
         <div className="min-h-screen flex flex-col bg-gray-50 pt-[15vh] sm:pt-[8.333vh]">
@@ -34,7 +38,6 @@ export default function Songs(){
 
                 </div>
             </main>
-
             <Footer />
         </div>
     )

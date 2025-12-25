@@ -5,6 +5,7 @@ export default function EventEditModal(props){
     const [title, setTitle] = React.useState(props.item.name)
     const [date, setDate] = React.useState(new Date(props.item.date).toISOString().split("T")[0])
     const [description, setDescription] = React.useState(props.item.description)
+    const apiUrl = import.meta.env.VITE_API_URL
 
     // React.useEffect(() => {
     //     if (props.item) {
@@ -26,7 +27,7 @@ export default function EventEditModal(props){
 
     const updateEvent = async (id) => {
         console.log("Updating event with id: ", id)
-        await api.post("http://localhost:4000/events/update", {
+        await api.post(`${apiUrl}/events/update`, {
             id,
             title,
             description,

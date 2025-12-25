@@ -5,11 +5,12 @@ export default function Events() {
     const [events, setEvents] = React.useState([])
     const [activeIndex, setActiveIndex] = React.useState(0)
     const [isPaused, setIsPaused] = React.useState(false)
+    const apiUrl = import.meta.env.VITE_API_URL
 
     React.useEffect(() => {
         const fetchEvents = async () => {
             try {
-                const res = await api.get('http://localhost:4000/events/asc/future')
+                const res = await api.get(`${apiUrl}/events/asc/future`)
                 setEvents(res.data)
             } catch (err) {
                 console.error("Error fetching events: ", err)
@@ -44,7 +45,6 @@ export default function Events() {
             onMouseEnter={() => setIsPaused(true)}
             onMouseLeave={() => setIsPaused(false)}
         >
-            {/* White Background Container */}
             <div className="relative h-72 md:h-96 overflow-hidden rounded-2xl bg-white shadow-xl border border-gray-100">
                 {events.map((event, index) => {
                     let position = "translate-x-full opacity-0"
@@ -81,7 +81,6 @@ export default function Events() {
                 })}
             </div>
 
-            {/* Adjusted Buttons for White Background */}
             <button 
                 onClick={prevSlide} 
                 className="absolute left-6 top-1/2 -translate-y-1/2 z-40 p-2 rounded-full bg-gray-100 hover:bg-gray-200 text-gray-800 transition-colors shadow-sm"

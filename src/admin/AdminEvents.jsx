@@ -10,6 +10,7 @@ export default function AdminEvents(){
     const [filter, setFilter] = React.useState("all")
     const [page, setPage] = React.useState(1)
     const limit = 5 
+    const apiUrl = import.meta.env.VITE_API_URL
 
 
     React.useEffect(() => {
@@ -18,13 +19,13 @@ export default function AdminEvents(){
 
 
     const fetchEvents = async () => {
-        const res = await api.get(`http://localhost:4000/events/${sortOrder}/${filter}?page=${page}&limit=${limit}`)
+        const res = await api.get(`${apiUrl}/events/${sortOrder}/${filter}?page=${page}&limit=${limit}`)
         setEvents(res.data)
     }
 
     const deleteEvent = async (id) => {
         console.log(id)
-        const res = await api.delete(`http://localhost:4000/events/${id}`)
+        const res = await api.delete(`${apiUrl}/events/${id}`)
         fetchEvents()
     }
 

@@ -5,10 +5,11 @@ export default function EventForm({ onSuccess }){
     const [title, setTitle] = React.useState("")
     const [date, setDate] = React.useState("")
     const [description, setDescription] = React.useState("")
+    const apiUrl = import.meta.env.VITE_API_URL
 
     const addEvent = async (e) => {
         e.preventDefault()
-        await api.post("http://localhost:4000/events", {
+        await api.post(`${apiUrl}/events`, {
             title,
             description,
             date

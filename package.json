@@ -20,7 +20,6 @@
     "tailwindcss": "^4.1.13",
     "vite": "^6.3.5"
   },
-  "proxy": "http://localhost:4000",
   "scripts": {
     "start": "concurrently \"npm run server\" \"npm run dev\"",
     "server": "npm --prefix server start",

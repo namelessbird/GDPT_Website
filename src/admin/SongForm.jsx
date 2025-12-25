@@ -4,10 +4,11 @@ import api from "../axios"
 export default function EventForm({ onSuccess }){
     const [title, setTitle] = React.useState("")
     const [lyrics, setLyrics] = React.useState("")
+    const apiUrl = import.meta.env.VITE_API_URL
 
     const addSong = async (e) => {
         e.preventDefault()
-        await api.post("http://localhost:4000/songs", {
+        await api.post(`${apiUrl}/songs`, {
             title,
             lyrics
         })

@@ -6,6 +6,7 @@ export default function Login(){
     const [user, setUser] = React.useState("")
     const [pass, setPass] = React.useState("")
     const [errorMessage, setErrorMessage] = React.useState("")
+    const apiUrl = import.meta.env.VITE_API_URL
 
      const handleSubmit = async(e) => {
         e.preventDefault()
@@ -16,7 +17,7 @@ export default function Login(){
                 pass: pass
             }
             const response = await axios.post(
-                'http://localhost:4000/auth',
+                `${apiUrl}/auth`,
                 data,
                 { withCredentials: true }
             );
