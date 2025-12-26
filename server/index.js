@@ -16,13 +16,18 @@ const app = express()
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended:false}))
 
+const allowedOrigins = [
+    "http://localhost:5173",
+    "https://gdptthienquang.netlify.app"
+]
+
 const corsOptions = {
-    origin: process.env.CLIENT_URL,
+    origin: allowedOrigins,
     credentials: true,
-    optionSuccessStatus: 200
+    optionsSuccessStatus: 200
 }
 app.use(cors(corsOptions))
-
+app.set("trust proxy", 1)
 app.use(session(
     {
         secret:process.env.SESSION_SECRET, 
@@ -30,8 +35,8 @@ app.use(session(
         resave:false, 
         cookie: {
             httpOnly: true,
-            secure: false,      
-            sameSite: 'lax'  
+            secure: process.env.NODE_ENV === "production",      
+            sameSite: 'none'  
         }
     }
 ))
@@ -48,7 +53,7 @@ async function startServer() {
 
         console.log("Connected to MongoDB:", mongoose.connection.name);
 
-        const port = 4000;
+        const port = process.env.PORT || 4000;
         app.listen(port, () => {
             console.log(`Server is running on port ${port}`);
         });
