@@ -75,7 +75,8 @@ event.delete('/:id', requireAdmin, async (req, res) => {
 event.post('/', requireAdmin, async (req, res) => {
     try{
         const {title, description, date} = sanitize(req.body)
-        await Event.create({name: title, description, date})
+        const normalizedDate = new Date(`${date}T12:00:00.000Z`)
+        await Event.create({name: title, description, date: normalizedDate})
         res.status(201).json({ message: "Added event successfully"})
     } catch(err){
         console.log(err)

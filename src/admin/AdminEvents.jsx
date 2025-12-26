@@ -79,7 +79,7 @@ export default function AdminEvents(){
             <div className="flex-1">
               <h3 className="text-lg sm:text-xl font-semibold text-gray-800">{event.name}</h3>
               <p className="text-gray-600 mt-1">{event.description}</p>
-              <p className="text-gray-500 mt-1 text-sm">{"Event Date: " + new Date(event.date).toLocaleDateString()}</p>
+              <p className="text-gray-500 mt-1 text-sm">{"Event Date: " + new Date(event.date).toISOString().split("T")[0]}</p>
             </div>
 
             <div className="flex gap-3 mt-3 sm:mt-0">
