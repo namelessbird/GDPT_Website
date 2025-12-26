@@ -18,7 +18,7 @@ export default function Navbar() {
         <div className="relative">
             <div className="fixed top-0 left-0 w-full h-18 bg-[#384264] flex items-center justify-between px-4 z-60 sm:z-50 shadow-md">
                 <NavLink to="/" onClick={() => setIsOpen(false)}>
-                    <img src="/images/Hoa_Sen.jpg" alt="logo" className="w-15 bg-white rounded-full" />
+                    <img src="./images/Hoa_Sen.jpg" alt="logo" className="w-15 bg-white rounded-full" />
                 </NavLink>
 
                 <div 
