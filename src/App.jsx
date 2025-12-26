@@ -9,10 +9,11 @@ import Games from "./Games";
 import Login from "./Login";
 import Dashboard from "./admin/Dashboard";
 import Events from "./Events"
-import {Routes, Route} from 'react-router-dom';
+import {Routes, Route, Navigate} from 'react-router-dom';
+import api from './axios'
 import "./styles.css"
 
-const Main = () => (
+const Main = ({loggedIn}) => (
   <Routes>
     <Route exact path='/' element={<><Navbar/><Hero/><Events/><Footer/></>}></Route>
     <Route exact path='/games' element={<><Navbar/><Games /></>}></Route>
@@ -25,12 +26,26 @@ const Main = () => (
 )
 
 function App() {
+    const [loggedIn, setLoggedIn] = React.useState(false)
+    const apiUrl = import.meta.env.VITE_API_URL
+
+    const getSession = async () => {
+      await api.get(`${apiUrl}/auth/session`)
+        .then(res => res.json())
+        .then(data => setLoggedIn(data.loggedIn))
+        .catch(() => setLoggedIn(false))
+    }
+
+    React.useEffect(() => {
+      getSession()
+    }, [])
+
   return (
     <div /*className="sm:pt-[8.333vh]"*/>
       {/* <Navbar /> */}
-      <Main />
+      <Main loggedIn={loggedIn}/>
     </div>
-  );
+  )
 }
 
 export default App;
