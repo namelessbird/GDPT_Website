@@ -24,7 +24,7 @@ export default function Dashboard() {
             <header className="relative flex items-center justify-between bg-[#384264] text-white px-4 py-3 shadow-md">
                 <NavLink to="/" className="flex items-center gap-2">
                     <img
-                    src="./images/Hoa_Sen.jpg"
+                    src="/images/Hoa_Sen.jpg"
                     alt="logo"
                     className="w-9 h-9 bg-white rounded-full"
                     />
