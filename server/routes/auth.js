@@ -25,4 +25,15 @@ auth.post('/', async (req, res) => {
     }
 })
 
+auth.get('/session', async (req, res) => {
+    try{
+        let sesh = req.session.loggedIn
+        if(sesh) return res.status(200).json({ loggedIn : true})
+        else return res.status(200).json({ loggedIn: false})
+    } catch (err) {
+        console.error(err)
+        res.status(500).json({ message: "Server error" })
+    }
+})
+
 module.exports = auth
