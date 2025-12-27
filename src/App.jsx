@@ -13,14 +13,28 @@ import {Routes, Route, Navigate} from 'react-router-dom';
 import api from './axios'
 import "./styles.css"
 
+function RequireAuth({ loggedIn, children }) {
+  if (!loggedIn) {
+    return <Navigate to="/login" replace />;
+  }
+  return children;
+}
+
+function RedirectIfAuth({ loggedIn, children }) {
+  if (loggedIn) {
+    return <Navigate to="/admin-dashboard" replace />;
+  }
+  return children;
+}
+
 const Main = ({loggedIn}) => (
   <Routes>
     <Route exact path='/' element={<><Navbar/><Hero/><Events/><Footer/></>}></Route>
     <Route exact path='/games' element={<><Navbar/><Games /></>}></Route>
     <Route exact path='/songs' element={<><Navbar/><Songs /></>}></Route>
     <Route exact path='/location' element={<><Navbar/><Location/></>}></Route>
-    <Route exact path='/admin-dashboard' element={<Dashboard/>}></Route>
-    <Route exact path='/login' element={<Login />}></Route>
+    <Route exact path='/admin-dashboard' element={<RequireAuth loggedIn={loggedIn}><Dashboard/></RequireAuth>}></Route>
+    <Route exact path='/login' element={<RedirectIfAuth loggedIn={loggedIn}><Login /></RedirectIfAuth>}></Route>
     <Route exact path='/calendar' element={<><Navbar/><Activity/></>}></Route>
   </Routes>
 )

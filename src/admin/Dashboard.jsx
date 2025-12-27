@@ -12,8 +12,8 @@ export default function Dashboard() {
             withCredentials: true
         }).catch(() => {
             window.location.replace('/login');
-        });
-    }, []);
+        })
+    }, [])
 
     const [tab, setTab] = React.useState(0);
 
