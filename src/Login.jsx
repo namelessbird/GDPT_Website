@@ -2,7 +2,7 @@ import React from "react";
 import "./styles.css"
 import axios from 'axios'
 
-export default function Login(){
+export default function Login({ setLoggedIn }){
     const [user, setUser] = React.useState("")
     const [pass, setPass] = React.useState("")
     const [errorMessage, setErrorMessage] = React.useState("")
@@ -20,9 +20,10 @@ export default function Login(){
                 `${apiUrl}/auth`,
                 data,
                 { withCredentials: true }
-            );
+            )
 
             console.log("user found")
+            setLoggedIn(true)
             window.location.replace("/admin-dashboard")
         } catch (error){
             if(error.response){

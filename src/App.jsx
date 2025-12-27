@@ -27,14 +27,14 @@ function RedirectIfAuth({ loggedIn, children }) {
   return children;
 }
 
-const Main = ({loggedIn}) => (
+const Main = ({loggedIn, setLoggedIn}) => (
   <Routes>
     <Route exact path='/' element={<><Navbar/><Hero/><Events/><Footer/></>}></Route>
     <Route exact path='/games' element={<><Navbar/><Games /></>}></Route>
     <Route exact path='/songs' element={<><Navbar/><Songs /></>}></Route>
     <Route exact path='/location' element={<><Navbar/><Location/></>}></Route>
     <Route exact path='/admin-dashboard' element={<RequireAuth loggedIn={loggedIn}><Dashboard/></RequireAuth>}></Route>
-    <Route exact path='/login' element={<RedirectIfAuth loggedIn={loggedIn}><Login /></RedirectIfAuth>}></Route>
+    <Route exact path='/login' element={<RedirectIfAuth loggedIn={loggedIn}><Login setLoggedIn={setLoggedIn} getSession={getSession}/></RedirectIfAuth>}></Route>
     <Route exact path='/calendar' element={<><Navbar/><Activity/></>}></Route>
   </Routes>
 )
@@ -44,10 +44,12 @@ function App() {
     const apiUrl = import.meta.env.VITE_API_URL
 
     const getSession = async () => {
-      await api.get(`${apiUrl}/auth/session`)
-        .then(res => res.json())
-        .then(data => setLoggedIn(data.loggedIn))
-        .catch(() => setLoggedIn(false))
+      try {
+        const res = await api.get(`${apiUrl}/auth/session`)
+        setLoggedIn(res.data.loggedIn)
+      } catch {
+        setLoggedIn(false);
+      }
     }
 
     React.useEffect(() => {
@@ -57,7 +59,7 @@ function App() {
   return (
     <div /*className="sm:pt-[8.333vh]"*/>
       {/* <Navbar /> */}
-      <Main loggedIn={loggedIn}/>
+      <Main loggedIn={loggedIn} setLoggedIn={setLoggedIn}/>
     </div>
   )
 }
