@@ -34,7 +34,7 @@ const Main = ({loggedIn, setLoggedIn}) => (
     <Route exact path='/songs' element={<><Navbar/><Songs /></>}></Route>
     <Route exact path='/location' element={<><Navbar/><Location/></>}></Route>
     <Route exact path='/admin-dashboard' element={<RequireAuth loggedIn={loggedIn}><Dashboard/></RequireAuth>}></Route>
-    <Route exact path='/login' element={<RedirectIfAuth loggedIn={loggedIn}><Login setLoggedIn={setLoggedIn} getSession={getSession}/></RedirectIfAuth>}></Route>
+    <Route exact path='/login' element={<RedirectIfAuth loggedIn={loggedIn}><Login setLoggedIn={setLoggedIn}/></RedirectIfAuth>}></Route>
     <Route exact path='/calendar' element={<><Navbar/><Activity/></>}></Route>
   </Routes>
 )
