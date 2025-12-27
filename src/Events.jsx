@@ -37,7 +37,19 @@ export default function Events() {
         setActiveIndex((prev) => (prev === 0 ? events.length - 1 : prev - 1))
     }
 
-    if (events.length === 0) return <div className="p-10 text-center text-gray-500">No upcoming events.</div>
+    if (events.length === 0) return (
+        <div className="relative w-full px-4 py-8">
+            <div className="relative h-72 md:h-96 flex flex-col items-center justify-center rounded-2xl bg-gray-50 border-2 border-dashed border-gray-200">
+                <div className="mb-4 text-gray-300">
+                    <svg className="w-16 h-16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                    </svg>
+                </div>
+                
+                <h3 className="text-xl font-semibold text-gray-600">Hiện không có sự kiện nào sắp tới</h3>
+            </div>
+        </div>
+    )
 
     return (
         <div 
@@ -69,7 +81,7 @@ export default function Events() {
                                 {event.name}
                             </h2>
                             <h3 className="text-xl text-blue-600 font-semibold mb-4">
-                                {new Date(event.date).toLocaleDateString()}
+                                {new Date(event.date).toISOString().split("T")[0]}
                             </h3>
                             <div className="max-h-40 overflow-y-auto px-4 scrollbar-thin">
                                 <p className="text-gray-600 text-md">
